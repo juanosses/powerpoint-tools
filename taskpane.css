@@ -1,0 +1,578 @@
+body, html {
+    height: 100%; /* Full height */
+    width: 100%;
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Horizontally center */
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-settings{
+  max-height: 100%; /* Full height */
+  min-height: auto;
+  max-width: 100%;
+  min-width: 100%;
+  margin-top:0;
+  padding-bottom: 15px;
+  padding-top: 0;
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+  background-color: #f4f4f4;
+}
+
+.introText {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    margin-top: 5%;
+    margin-bottom: 0px;
+    text-align: center; /* Ensure intro text is centered */
+}
+
+
+/* deletes default button look */
+.button-override {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  min-width: 135px;
+  min-height: 35px;
+}
+
+.button-override:hover {
+  background-color: #d0e7ff;
+}
+
+.button-override:active {
+  background-color:rgb(240, 240, 240);
+}
+
+
+.toggle-button-container {
+  width: 100%;
+  height: 25px;
+  background-color: white;
+  display: flex;
+  justify-content: center;   /* center horizontally */
+  align-items: center;       /* center vertically */
+  padding: 0;
+  margin-top: 0;
+  border: none;
+}
+
+.toggle-button-container:hover {
+    background-color: #d0e7ff;
+}
+
+
+.toggle-button {
+  background-color: transparent;
+  color: black;
+  width: 275px;              /* fixed width, not full */
+  height: 25px;              /* exact match to container */
+  padding: 0;                /* remove padding to avoid height mismatch */
+  cursor: pointer;
+  text-align: left;
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 100;
+  border-radius: 0;
+  border-style: solid;
+  border-width: 1px 0 0 0;   /* only top border */
+  border-color: #a3a3a3;
+  margin: 0;                 /* remove extra margin */
+}
+
+
+.toggle-button-style {
+    background-color: #e1e2e3;
+    color: black;
+    width: 100%; /* Same width as the content */
+    height: 25px;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 0px;
+    font-size: 13px;
+    margin-bottom: 0px;
+    font-family: Helvetica, sans-serif;
+    font-weight: 500;
+    border-top: 1px solid #a3a3a3;
+    display: flex;
+    justify-content: center; /* Horizontal center */
+    align-items: center; 
+}
+
+
+.section-content {
+    display: none; /* Hidden by default */
+    width: 100%; /* Match the width of the panel */
+    height: auto;
+    margin-bottom: 0px; /* Spacing between sections */
+    margin-top: 0;
+    text-align: center; /* Ensure all content within the sections is centered */
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding-bottom: 15px;
+    padding-top: 20px;
+
+}
+
+.highlight-section {
+  background-color: #ffffff; /* Ejemplo: gris claro */
+}
+
+.delete-button {
+    min-height: 20px;
+    max-height: 20px;
+    max-width: 100px;
+    min-width: 100px;
+    border: 1px solid #ccc;
+    background-color: rgb(226, 226, 226);
+    margin-left: 172px;
+    margin-bottom: 0px;
+    font-size: 10px;
+}
+
+.delete-button:hover {
+  background-color: #ccc;
+}
+
+.delete-button:active {
+  background-color: rgb(240, 240, 240);
+}
+
+.ms-Button {
+    background-color: rgb(255, 255, 255);
+    min-height: 35px;
+    max-height: 35px;
+    max-width: 273px;
+    min-width: 100px;
+    border-style: none;
+    padding: 0;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+
+.ms-Button-label {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-weight: normal;
+    text-align: center;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(255, 255, 255);
+    min-height: 35px;
+    max-height: 35px;
+    width: 273px;
+    padding: 0;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-in {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.ms-Button-label:hover {
+  background-color: #d0e7ff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  color: #000000;
+  border: 1px solid #ccc;
+}
+
+.ms-Button-label:active {
+  background-color:rgb(240, 240, 240);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  color: #000000;
+  border: 0px;
+  border-color: white;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    width: 275px; /* Adjust based on the width you want */
+    max-width: 275px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+    align-items: center;
+}
+
+.color-button {
+    width: 48%; /* Width for buttons in button row */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.saved-styles {
+    background-color: #0078d7;
+    color: white;
+    width: 49%; /* Width for buttons in button row */
+    justify-content: center;
+    text-align: center;
+    align-items: center; 
+}
+
+.saved-styles:hover {
+    background-color: #0086f3;
+    color: white;
+}
+
+.saved-styles:active {
+    background-color: #006cc4;
+    color: white;
+}
+
+
+
+.style-list-container, .name-list-container, .color-list-container, .position-list-container {
+    max-height: 100px;
+    min-height: 100px;
+    overflow-y: auto;
+    width: 250px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 0px;
+    padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #545353;
+}
+
+.ms-List {
+    list-style-type: none;
+    padding: 0;
+}
+
+.style-item, .name-item, .color-item, .position-item {
+    padding: 8px;
+    margin: 4px 0;
+    background-color: #f3f2f1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.style-item.selected, .name-item.selected, .color-item.selected, .position-item.selected {
+    background-color: #d0e7ff;
+    border-color: #0078d7;
+    box-shadow: 1px 1px;
+}
+
+#objectNameInput, #positionNameInput, #styleNameInput, #initialColorInput, #newColorInput, #IDnameInput {
+    background-color: rgb(250, 250, 250);
+    border: 1px solid #0078d7;
+    border-radius: 5px;
+    width: 250px;
+    min-height: 35px;
+    padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.Signage {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #545353;
+}
+
+
+.TaggingSection {
+    background-color: #f5f5f5;
+    padding: 5px;
+    border: 0px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Adjust based on the width you want */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+    align-items: center;
+    font-size: 10px;
+}
+
+
+
+.counter-grid {
+    width: 250 px;
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.table-button-main {
+  display: flex;
+  width: 275px;
+  align-items: center; /* Horizontally center */
+  justify-content: center;
+}
+
+ td {
+    text-align: center;
+    padding: 0px;
+    max-width: 135px;
+    min-width: 135px;
+    font-size: 10px;
+    cursor: pointer;
+    color: #000000;
+    }
+
+td:first-child {
+    border-right: 1px solid #ccc;
+    }
+
+tr:first-child {
+    border-bottom: 1px solid #ccc;
+    }
+
+
+.button-grid {
+    background-color: rgb(255, 255, 255);
+    min-height: 35px;
+    max-height: 35px;
+    max-width: 275px;
+    min-width: 275px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+
+
+/* Top Counters */
+
+.table-button-counter {
+  display: flex;
+  min-width: 275px;
+  align-items: center; /* Horizontally center */
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  background-color: #F4F4F4;
+  padding: none;
+  margin-bottom: 15px;
+  border: none;
+}
+
+.table-button-counter td {
+  text-align: center;
+  padding: 0px;
+  max-width: 90px;
+  min-width: 90px;
+  font-size: 10px;
+  cursor: pointer;
+  color: #000000;
+  background-color: #F4F4F4;
+}
+
+.table-button-counter td:first-child {
+  border-right: 1px solid #ccc;
+}
+
+/* Note: CSS doesn't have a `:second-child` selector — use :nth-child(2) */
+.table-button-counter td:nth-child(2) {
+  border-right: 1px solid #ccc;
+}
+
+.table-button-counter tr:first-child {
+  border-bottom: 1px solid #ccc;
+
+}
+
+/* End Top Counters */
+
+.button-counter{
+  background-color: #F4F4F4;
+  padding: none;
+  margin: none;
+  border: none;
+}
+
+
+/* Naming Buttons */
+
+.table-button-naming {
+    background-color: rgb(255, 255, 255);
+    min-height: 35px;
+    max-height: 35px;
+    max-width: 275px;
+    min-width: 275px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    vertical-align: middle;
+}
+
+.table-button-naming td {
+  padding: 0;
+  min-height: 35px;
+  max-height: 35px;
+  max-width: 65px;
+  min-width: 65px;
+  font-size: 10px;
+  cursor: pointer;
+  color: #000000;
+  background-color: white;
+  align-items: center; /* Horizontally center */
+  justify-content: center;
+  text-align: center;
+}
+
+.table-button-naming td:hover:not(.td-select),
+.table-button-naming td:active:not(.td-select) {
+  background-color: #d0e7ff;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.table-button-naming td:first-child {
+  border-right: 1px solid #ccc;
+}
+
+/* Note: CSS doesn't have a `:second-child` selector — use :nth-child(2) */
+.table-button-naming td:nth-child(2) {
+  border-right: 1px solid #ccc;
+}
+
+.table-button-naming tr:first-child {
+  border-bottom: 1px solid #ccc;
+
+}
+
+/* Variation: no right border on first td */
+.table-button-naming.no-border-first td:first-child {
+  border-right: none;
+}
+
+
+/* Variation: no right border on second td */
+.table-button-naming.no-border-second td:nth-child(2) {
+  border-right: none;
+}
+
+/* Modifier: remove top margin */
+.table-button-naming.no-top-margin {
+  margin-top: 0;
+}
+
+/* End Naming Buttons */
+
+.button-naming {
+    background-color: transparent;
+    border-style: none;
+    padding: 0;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    text-align: center;
+    color: #000000;
+}
+
+.sectionSubheader {
+width: 275px;
+text-align: left;
+font-family: Helvetica, sans-serif;
+font-size: 12px;
+font-weight: 100;
+margin-bottom: 0;
+margin-top: 0;
+}
+
+.vertical-divider {
+  width: 100%;
+  border-top: 1px solid #a3a3a3;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.dropdown-name-list {
+  width: 100%;
+  height: 35px;
+  font-size: 10px;
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  border-radius: 2px;
+  padding: none;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  line-height: 1;
+  text-align: center;
+  text-align-last: center; /* Esto asegura que el texto seleccionado también esté centrado */
+}
+
+.dropdown-name-list:hover {
+  border: 1px solid #A0A0A0;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+.toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.toggle-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.toggle-button.open .toggle-arrow {
+  transform: rotate(180deg);
+}
