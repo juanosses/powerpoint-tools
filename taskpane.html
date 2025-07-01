@@ -1,0 +1,355 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+<!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deck Designer Add-in</title>
+
+    <!-- Office.js for Office Add-ins -->
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+
+    <!-- Office UI Fabric Core CSS for UI components -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/office-ui-fabric-js/1.4.0/css/fabric.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/office-ui-fabric-js/1.4.0/css/fabric.components.min.css">
+
+    <!-- Core.js for polyfills (this version is quite old, consider using a newer version if possible) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.min.js"></script>
+
+    <!-- jQuery (make sure to include it after core-js for compatibility) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Optional: Add your custom scripts here -->
+    <script src="https://inquisitive-fierce-painter.glitch.me/taskpane.js"></script>
+
+    <!-- Template styles -->
+    <link href="https://inquisitive-fierce-painter.glitch.me/taskpane.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<br>
+	<section class="header-settings">
+		<section class="ms-font-m">
+			<div class="introText">
+				<p>Deck Designer 1.2</p>
+			</div>
+		</section>
+
+		<!-- Buttons Table -->
+
+		<table class="table-button-naming no-border-second">
+			<tr>
+
+				<!-- Apply to selection -->
+				<td><button id="saveStylesButton" class="button-naming">Save Styles</button>
+				</td>
+
+				<!-- Apply to ID -->
+				<td><button id="loadStylesButton" class="button-naming">Load Styles</button>
+				</td>
+
+			</tr>
+		</table>
+
+		<!-- END Buttons Table -->
+
+
+		<!--Ready for Design, Designed and Unmarked LIST-->
+		<div class="vertical-divider"></div>
+		<div class="sectionSubheader">
+			<p>Slide Status</p>
+		</div>
+		<table class="table-button-counter">
+			<tr>
+
+				<!-- Ready for design-->
+				<td><button class="button-counter">To Design</button><span id="readyForDesignCount" class="counter-counter">0</span>
+				</td>
+
+				<!-- Designed-->
+				<td><button class="button-counter">Designed</button><span id="designedCount" class="counter-counter">0</span>
+				</td>
+
+				<!-- Unmarked-->
+				<td><button id="manualUpdateUnmarkedCount" class="button-counter">Unmarked</button><span id="unmarkedCount" class="counter-counter">0</span>
+				</td>
+			</tr>
+		</table>
+
+		<!--Ready for Design, Designed and Unmarked BUTTONS-->
+
+		<button id="markReadyForDesign" class="ms-Button">
+	    <span class="ms-Button-label">Mark as Ready for Design</span>
+			</button>
+		<button id="markDesigned" class="ms-Button">
+			<span class="ms-Button-label">Mark as Designed</span>
+			</button>
+	</section>
+
+
+	<!-- Toggle for Naming section -->
+	<button class="toggle-button-style">ID's</button>
+	<div id="namingSection" class="section-content highlight-section">
+
+
+		<input type="text" id="IDnameInput" placeholder="Enter object name">
+
+
+		<!-- Buttons Table -->
+
+		<table class="table-button-naming no-border-first">
+			<tr>
+
+				<!-- Apply to selection -->
+				<td><button id="addNameToList" class="button-naming">Add ID</button>
+				</td>
+			</tr>
+		</table>
+
+		<!-- END Buttons Table -->
+
+		<div class="name-list-container">
+			<ul id="nameList" class="ms-List"></ul>
+		</div>
+		<button id="deleteSelectedName" class="delete-button">Delete</button>
+
+		<!-- Buttons Table -->
+
+		<table class="table-button-naming no-border-first">
+			<tr>
+
+				<!-- Apply to selection -->
+				<td><button id="applyObjectName" class="button-naming">Apply ID</button>
+				</td>
+			</tr>
+		</table>
+
+		<!-- END Buttons Table -->
+
+	</div>
+
+
+
+	<!-- Toggle for Style Name section -->
+	<button class="toggle-button-style">Styles</button>
+	<div class="section-content">
+		<div class="sectionSubheader">
+			<p>Create a Style</p>
+		</div>
+		<input type="text" id="styleNameInput" placeholder="Enter object name">
+
+		<!-- Buttons Table -->
+
+		<table class="table-button-naming">
+			<tr>
+
+				<!-- Add Text Style -->
+				<td><button id="copyAttributes" class="button-naming">Text</button>
+				</td>
+
+				<!-- Add Position -->
+				<td><button id="copyPosition" class="button-naming">Position</button>
+				</td>
+
+				<!-- Add Color -->
+				<td><button id="addColor" class="button-naming">Color</button>
+				</td>
+
+			</tr>
+		</table>
+		<!-- END Buttons Table -->
+
+
+	</div>
+
+
+	<!-- Toggle for Text Styles section -->
+
+	<!-- Toggle Text Styles Section with Arrow -->
+	<div class="toggle-button-wrapper">
+		<button id="toggleTextStyles" class="toggle-button">
+		  <span class="toggle-arrow">&#9662;</span> Text Styles
+		</button>
+	</div>
+
+	<!-- Content Section -->
+	<div id="textStylesSection" class="section-content">
+		<div class="style-list-container">
+			<ul id="styleList" class="ms-List"></ul>
+		</div>
+		<button id="deleteSelectedStyle" class="delete-button">Delete</button>
+
+		<!-- Buttons Table -->
+		<table class="table-button-naming no-border-second">
+			<tr>
+				<td><button id="applyAttributes" class="button-naming">Apply to selection</button></td>
+				<td class="td-select">
+					<select id="nameDropdown_textStyle" class="dropdown-name-list">
+	          <option value="" hidden selected>Apply to ID</option>
+	        </select>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<!-- END Text Styles -->
+
+
+
+	<!-- Toggle for Position section -->
+
+	<div class="toggle-button-container">
+		<button id="togglePosition" class="toggle-button">
+    <span class="toggle-arrow">&#9662;</span> Position
+  </button>
+	</div>
+
+	<div id="positionSection" class="section-content">
+		<div class="position-list-container">
+			<ul id="positionList" class="ms-List"></ul>
+		</div>
+		<button id="deleteSelectedPosition" class="delete-button">Delete</button>
+
+		<table class="table-button-naming no-border-second">
+			<tr>
+				<td><button id="applyPosition" class="button-naming">Apply to selection</button></td>
+				<td class="td-select">
+					<select id="nameDropdown_position" class="dropdown-name-list">
+          <option value="" hidden selected>Apply to ID</option>
+        </select>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+
+
+	<!-- Toggle for Colors section -->
+
+	<div class="toggle-button-container">
+		<button id="toggleColors" class="toggle-button">
+	    <span class="toggle-arrow">&#9662;</span>
+	    Colors
+	  </button>
+	</div>
+
+	<div id="colorsSection" class="section-content">
+		<div class="color-list-container">
+			<ul id="colorList" class="ms-List"></ul>
+		</div>
+		<button id="deleteSelectedColor" class="delete-button">Delete</button>
+
+
+		<!-- Text color -->
+		<div class="sectionSubheader">
+			<p>Text Color</p>
+		</div>
+
+
+		<!-- Buttons Table -->
+
+
+		<table class="table-button-naming no-border-second">
+			<tr>
+				<td><button id="applyColorToTextInTextBox" class="button-naming">Apply to selection</button></td>
+				<td class="td-select">
+					<select id="nameDropdown_colorText" class="dropdown-name-list">
+		        <option value="" hidden selected>Apply to ID</option>
+		      </select>
+				</td>
+			</tr>
+		</table>
+
+
+		<!-- END Buttons Table -->
+
+
+
+		<!-- Fill color -->
+
+		<div class="sectionSubheader">
+			<p>Fill Color</p>
+		</div>
+
+		<!-- Buttons Table -->
+
+		<table class="table-button-naming no-border-second">
+			<tr>
+				<td><button id="applyFillColor" class="button-naming">Apply to selection</button></td>
+				<td class="td-select">
+					<select id="nameDropdown_colorFill" class="dropdown-name-list">
+		        <option value="" hidden selected>Apply to ID</option>
+		      </select>
+				</td>
+			</tr>
+		</table>
+
+		<!-- END Buttons Table -->
+
+		<!-- Stroke color -->
+		<div class="sectionSubheader">
+			<p>Stroke Color</p>
+		</div>
+
+		<!-- Buttons Table -->
+		<table class="table-button-naming no-border-second">
+			<tr>
+				<td><button id="applyLineColor" class="button-naming">Apply to selection</button></td>
+				<td class="td-select">
+					<select id="nameDropdown_colorStroke" class="dropdown-name-list">
+		        <option value="" hidden selected>Apply to ID</option>
+		      </select>
+				</td>
+			</tr>
+		</table>
+		<!-- END Buttons Table -->
+	</div>
+
+
+
+	<!-- Toggle for deck color SWAP change section -->
+
+
+	<div class="toggle-button-container">
+		<button id="toggleColorChange" class="toggle-button">
+	    <span class="toggle-arrow">&#9662;</span>
+	    Color Swap
+	  </button>
+	</div>
+	<div id="colorChangeSection" class="section-content">
+		<input type="text" id="initialColorInput" placeholder="Original #HEX or rgb(r,g,b)" />
+		<input type="text" id="newColorInput" placeholder=" Destination #HEX or rgb(r,g,b)" />
+
+		<!-- Buttons Table -->
+
+		<table class="table-button-naming no-border-second">
+			<tr>
+
+				<!-- Apply to selection -->
+				<td><button id="performSlideColorChangeButton" class="button-naming">Apply to Slide</button>
+				</td>
+
+				<!-- Apply to ID -->
+				<td><button id="performColorChangeButton" class="button-naming">Apply to Deck</button>
+				</td>
+
+			</tr>
+		</table>
+
+		<!-- END Buttons Table -->
+
+
+	</div>
+
+
+
+	<div class="Signage">
+		<p>Editorial Design - Edelman Colombia Studio</p>
+	</div>
+	<br>
+  </body>
+  
+</html>
